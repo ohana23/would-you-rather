@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { setAuthedUser } from '../actions/authedUser';
+// import { setAuthedUser } from '../actions/authedUser';
 // import { _getUsers } from '../utils/_DATA';
 
 // TODO: Use the promise of _getUsers() to populate the select list.
