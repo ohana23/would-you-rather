@@ -6,28 +6,47 @@ class Dashboard extends Component {
     render() {
 
         const { showUnanswered } = this.props;
+        console.log(this.props)
+
+        // separate questions from answered and unanswered
+        // show answered questions if showUnanswered==false
+        // show unanswered questions if showUnanswered==true
 
         return (
             <div>
-                <ul>
-                    {this.props.questionIds.map((id) => (
-                        <li key={id}>
-                            <Question
-                                id={id}
-                                showUnanswered={showUnanswered}
-                            />
-                        </li>))}
-                </ul>
+                {showUnanswered
+                    ? <ul>
+                        {this.props.unansweredIds.map((id) => (
+                            <li key={id}>
+                                <Question
+                                    id={id}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                    : <ul>
+                        {this.props.answeredIds.map((id) => (
+                            <li key={id}>
+                                <Question
+                                    id={id}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                }
             </div>
         );
     }
 }
 
-function mapStateToProps({ questions }) {
-    return {
-        questionIds: Object.keys(questions)
-            .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
-    };
+function mapStateToProps({ questions, authedUser, users }) {
+    const authed = users[authedUser];
+    const answeredIds = Object.keys(authed.answers)
+        .sort((a,b) => (questions[b].timestamp - questions[a].timestamp));
+    const unansweredIds = Object.keys(questions).filter(qid => !answeredIds.includes(qid))
+        .sort((a,b) => questions[b].timestamp - questions[a].timestamp);
+        
+    return { answeredIds, unansweredIds }
 }
 
 export default connect(mapStateToProps)(Dashboard);
