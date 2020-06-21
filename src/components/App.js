@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
-import '../App.css';
-import Login from './Login';
-import Dashboard from './Dashboard';
+import '../styles/App.css';
+import Toggle from './Toggle';
 
 class App extends Component {
   componentDidMount() {
@@ -15,7 +14,7 @@ class App extends Component {
       <div>
         {this.props.loading === true
           ? null
-          : <Dashboard />}
+          : <Toggle />}
       </div>
     )
   }

@@ -4,16 +4,19 @@ import Question from './Question';
 
 class Dashboard extends Component {
     render() {
-        console.log(this.props);
+
+        const { showUnanswered } = this.props;
+
         return (
             <div>
-                <h3>Questions</h3>
                 <ul>
                     {this.props.questionIds.map((id) => (
                         <li key={id}>
-                            <Question id={id}/>
-                        </li>
-                    ))}
+                            <Question
+                                id={id}
+                                showUnanswered={showUnanswered}
+                            />
+                        </li>))}
                 </ul>
             </div>
         );
