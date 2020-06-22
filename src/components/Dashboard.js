@@ -4,13 +4,7 @@ import Question from './Question';
 
 class Dashboard extends Component {
     render() {
-
         const { showUnanswered } = this.props;
-        console.log(this.props)
-
-        // separate questions from answered and unanswered
-        // show answered questions if showUnanswered==false
-        // show unanswered questions if showUnanswered==true
 
         return (
             <div>
