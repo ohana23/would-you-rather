@@ -4,10 +4,11 @@ import Question from './Question';
 
 class Dashboard extends Component {
     render() {
-        const { showUnanswered } = this.props;
+        const { showUnanswered, authed } = this.props;
 
         return (
             <div>
+                <h3>{authed.name}</h3>
                 {showUnanswered
                     ? <ul>
                         {this.props.unansweredIds.map((id) => (
@@ -40,7 +41,7 @@ function mapStateToProps({ questions, authedUser, users }) {
     const unansweredIds = Object.keys(questions).filter(qid => !answeredIds.includes(qid))
         .sort((a,b) => questions[b].timestamp - questions[a].timestamp);
         
-    return { answeredIds, unansweredIds }
+    return { answeredIds, unansweredIds, authed }
 }
 
 export default connect(mapStateToProps)(Dashboard);

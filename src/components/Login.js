@@ -20,7 +20,7 @@ class Login extends Component {
         
         this.state.userId
             ? this.props.authenticateUser(this.state.userId)
-            : alert("Select a user to Log In");
+            : alert("Select a user to log in");
     }
 
 
@@ -37,20 +37,15 @@ class Login extends Component {
                         defaultValue='select' 
                         onChange={this.handleUserChange}
                     >
-                        <option 
-                            value='select' 
-                            disabled>Select
+                        <option value='select' disabled>
+                            Select
                         </option>
                         {Object.keys(users).map(user => 
-                            <option 
-                                key={user}
-                                value={user}
-                            >
+                            <option key={user} value={user}>
                                 {users[user].name}
                             </option>)
                         }
                     </select>
-                    <br></br>
                     <input type="submit" value="Submit"></input>
                 </form>
             </div>
