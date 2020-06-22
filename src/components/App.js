@@ -7,6 +7,7 @@ import DashboardToggle from './DashboardToggle';
 import Login from './Login';
 import Nav from './Nav';
 import NewQuestion from './NewQuestion';
+import Leaderboard from './Leaderboard';
 
 class App extends Component {
   componentDidMount() {
@@ -23,8 +24,8 @@ class App extends Component {
       //           : <div><NewQuestion /> <DashboardToggle /></div>}
       //       </div>
       // </Router>
-
       <Router>
+      <Leaderboard />
         <div className='container'>
           {this.props.loggedOut 
             ? <Login /> 
@@ -32,6 +33,7 @@ class App extends Component {
                 <Nav />
                 <Route exact path='/' component={DashboardToggle} />
                 <Route exact path='/add' component={NewQuestion} />
+                <Route exact path='/leaderboard' component={Leaderboard} />
               </div>
           }
         </div>

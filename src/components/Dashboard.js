@@ -4,14 +4,14 @@ import Question from './Question';
 
 class Dashboard extends Component {
     render() {
-        const { showUnanswered, authed } = this.props;
+        const { showUnanswered, authed, unansweredIds, answeredIds } = this.props;
 
         return (
             <div>
                 <h3>{authed.name}</h3>
                 {showUnanswered
                     ? <ul>
-                        {this.props.unansweredIds.map((id) => (
+                        {unansweredIds.map((id) => (
                             <li key={id}>
                                 <Question
                                     id={id}
@@ -20,7 +20,7 @@ class Dashboard extends Component {
                         ))}
                     </ul>
                     : <ul>
-                        {this.props.answeredIds.map((id) => (
+                        {answeredIds.map((id) => (
                             <li key={id}>
                                 <Question
                                     id={id}
