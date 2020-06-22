@@ -59,6 +59,7 @@ class NewQuestion extends Component {
                         value={optionTwoText}
                         onChange={this.handleOptionTwoChange}
                         maxLength={100} />
+                        <br></br>
                     <button
                         type='submit'
                         disabled={optionOneText==='' && optionTwoText===''}>

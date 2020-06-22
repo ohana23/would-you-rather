@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import '../styles/App.css';
 import DashboardToggle from './DashboardToggle';
-// import LoadingBar from 'react-redux-loading';
 import Login from './Login';
+import Nav from './Nav';
 import NewQuestion from './NewQuestion';
 
 class App extends Component {
@@ -14,19 +15,34 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Login />
-        {this.props.loading === true
-          ? null
-          : <div><NewQuestion /> <DashboardToggle /></div>}
-      </div>
+      // <Router>
+      //       <div>
+      //         <Login />
+      //         {this.props.loggedOut === true
+      //           ? null
+      //           : <div><NewQuestion /> <DashboardToggle /></div>}
+      //       </div>
+      // </Router>
+
+      <Router>
+        <div className='container'>
+          {this.props.loggedOut 
+            ? <Login /> 
+            : <div>
+                <Nav />
+                <Route exact path='/' component={DashboardToggle} />
+                <Route exact path='/add' component={NewQuestion} />
+              </div>
+          }
+        </div>
+      </Router>
     )
   }
 }
 
 function mapStateToProps({ authedUser }) {
   return {
-    loading: authedUser === null
+    loggedOut: authedUser === null
   }
 }
 
