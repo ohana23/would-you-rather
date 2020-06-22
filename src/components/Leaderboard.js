@@ -12,7 +12,13 @@ class Leaderboard extends Component {
                 <ul>
                     {users.map(user =>
                         <li key={user.id}>
-                            <LeaderboardEntry id={user.id} />
+                            <LeaderboardEntry 
+                                id={user.id} 
+                                name={user.name}
+                                avatarURL={user.avatarURL}
+                                questionsAnswered={Object.keys(user.answers).length}
+                                questionsCreated={user.questions.length}
+                            />
                         </li>)
                     }
                 </ul>
