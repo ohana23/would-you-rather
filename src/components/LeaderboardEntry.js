@@ -14,7 +14,6 @@ class LeaderboardEntry extends Component {
                 Questions: {questionsCreated}<br></br>
                 Answers: {questionsAnswered}<br></br><br></br>
             </div>
-
         );
     }
 }
