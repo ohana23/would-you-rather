@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 
 class Question extends Component {
     render() {
-        const author = this.props.author.name;
-        const optionOne = this.props.question.optionOne;
-        const optionTwo = this.props.question.optionTwo;
-        const id = this.props.question.id;
+        const { name, avatarURL } = this.props.author;
+        const { optionOne, optionTwo, id } = this.props.question;
 
         return (
-            <Link to={`/question/${id}`}>
-                {author} asks<br></br>
+            <Link to={`/questions/${id}`}>
+                <img src={avatarURL} alt='avatar profile'/><br></br>
+                {name} asks<br></br>
                 Would you rather...<br></br>
                 {optionOne.text}<br></br>
                 {optionTwo.text}<br></br><br></br>
@@ -22,9 +21,9 @@ class Question extends Component {
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
     const question = questions[id];
-
+    console.log(id)
     return {
-        question: questions[id],
+        question,
         author: users[question.author],
         authedUser
     }

@@ -1,13 +1,15 @@
+import '../styles/App.css';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import LoadingBar from 'react-redux-loading';
 import { handleInitialData } from '../actions/shared';
 import DashboardToggle from './DashboardToggle';
 import Login from './Login';
 import Nav from './Nav';
 import NewQuestion from './NewQuestion';
 import Leaderboard from './Leaderboard';
-import '../styles/App.css';
+import QuestionPage from './QuestionPage';
 
 class App extends Component {
   componentDidMount() {
@@ -20,11 +22,14 @@ class App extends Component {
     return (
       <Router>
         <div className='container'>
+          <LoadingBar />
+
           {loggedOut 
             ? <Login /> 
             : <div>
                 <Nav authedUser={authedUser}/>
                 <Route exact path='/' component={DashboardToggle} />
+                <Route path='/questions/:id' component={QuestionPage} />
                 <Route exact path='/add' component={NewQuestion} />
                 <Route exact path='/leaderboard' component={Leaderboard} />
               </div>
