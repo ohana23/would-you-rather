@@ -11,3 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Run
 
 `npm start`
+
+### Here's a demo
+
+![Would You Rather demo](src/demo/would-you-rather-demo.gif)
