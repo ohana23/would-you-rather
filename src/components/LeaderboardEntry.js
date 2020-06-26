@@ -6,13 +6,31 @@ class LeaderboardEntry extends Component {
         const scoreSum = questionsAnswered + questionsCreated;
 
         return (
-            <div>
-                <img src={avatarURL} alt='avatar profile'/><br></br>
-                Score: {scoreSum}<br></br><br></br>
-                @{id}<br></br>
-                {name}<br></br>
-                Questions: {questionsCreated}<br></br>
-                Answers: {questionsAnswered}<br></br><br></br>
+            <div className="leaderboard-entry">
+                <div className="user-details">
+                    <img src={avatarURL} alt='avatar profile'/>
+                    <div className="leaderboard-name">
+                        {name}
+                    </div>
+                    <div className="leaderboard-id">
+                        @{id}
+                    </div>
+                </div>
+
+                <div className="score">
+                    <div className="leaderboard-score">
+                        Score: {scoreSum}
+                    </div>
+                </div>
+
+                <div className="score-details">
+                    <div className="questions-created">
+                        Questions: {questionsCreated}
+                    </div>
+                    <div className="questions-answered">
+                        Answers: {questionsAnswered}
+                    </div>
+                </div>
             </div>
         );
     }

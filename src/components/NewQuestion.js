@@ -50,24 +50,21 @@ class NewQuestion extends Component {
 
         return (
             <div>
-                <h2>New Question</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <h3>Would you rather...</h3>
+                <form className="question-form" onSubmit={this.handleSubmit}>
+                    <h1>Would you rather...</h1>
                     <textarea
-                        placeholder='Option one'
                         value={optionOneText}
                         onChange={this.handleOptionOneChange}
                         maxLength={100} />
-                    <h3>or</h3>
+                    <h2>or</h2>
                     <textarea
-                        placeholder='Option two'
                         value={optionTwoText}
                         onChange={this.handleOptionTwoChange}
                         maxLength={100} />
                         <br></br>
                     <button
                         type='submit'
-                        disabled={optionOneText === '' && optionTwoText === ''}>
+                        disabled={optionOneText === '' || optionTwoText === ''}>
                             Submit
                     </button>
                 </form>

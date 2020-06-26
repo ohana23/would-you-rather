@@ -27,10 +27,9 @@ class Login extends Component {
     render() {
         const { users } = this.props;
         return (
-            <div>
+            <div className="login">
                 <h1>Would You Rather</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor='users'>Select a user:</label>
                     <select 
                         name='users' 
                         id='users' 
@@ -38,7 +37,7 @@ class Login extends Component {
                         onChange={this.handleUserChange}
                     >
                         <option value='select' disabled>
-                            Select
+                            Select a user to log in
                         </option>
                         {Object.keys(users).map(user => 
                             <option key={user} value={user}>
@@ -46,7 +45,7 @@ class Login extends Component {
                             </option>)
                         }
                     </select>
-                    <input type="submit" value="Submit"></input>
+                    <input type="submit" value="Log in"></input>
                 </form>
             </div>
         );

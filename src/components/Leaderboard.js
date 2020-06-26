@@ -8,7 +8,6 @@ class Leaderboard extends Component {
 
         return (
             <div>
-                <h2>Leaderboard</h2>
                 <ul>
                     {users.map(user =>
                         <li key={user.id}>

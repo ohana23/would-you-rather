@@ -15,31 +15,32 @@ class Nav extends Component {
     }
     
     render() {
-        const { authedUser } = this.props;
+        const { currentUser } = this.props;
 
         return (
             <nav className='nav'>
                 <ul>
+                    <li className="current-user">
+                        Hey, {currentUser}!
+                    </li>
                     <li>
-                        <NavLink to='/' exact activeClassName='active'>
+                        <NavLink to='/' exact activeClassName='active' className="nl">
                             Home
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/add' activeClassName='active'>
+                        <NavLink to='/add' activeClassName='active' className="nl">
                             New Question
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/leaderboard' activeClassName='active'>
+                        <NavLink to='/leaderboard' activeClassName='active' className="nl">
                             Leaderboard
                         </NavLink>
                     </li>
+
                     <li>
-                        {authedUser}
-                    </li>
-                    <li>
-                        <NavLink to='/' exact>
+                        <NavLink to='/' >
                             <button onClick={this.handleLogOut}>Log out</button>
                         </NavLink>
                     </li>

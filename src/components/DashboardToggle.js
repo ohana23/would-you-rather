@@ -7,7 +7,7 @@ import 'react-tabs/style/react-tabs.css';
  
 export default () => (
   <Tabs>
-    <TabList>
+    <TabList className='tList'>
       <Tab>Unanswered</Tab>
       <Tab>Answered</Tab>
     </TabList>

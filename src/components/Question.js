@@ -8,20 +8,29 @@ class Question extends Component {
         const { optionOne, optionTwo, id } = this.props.question;
 
         return (
-            <Link to={`/questions/${id}`}>
-                <img src={avatarURL} alt='avatar profile'/><br></br>
-                {name} asks<br></br>
-                Would you rather...<br></br>
-                {optionOne.text}<br></br>
-                {optionTwo.text}<br></br><br></br>
-            </Link>
+                <Link className="question-link" to={`/questions/${id}`}>
+                    <div className="user-details">
+                        <img src={avatarURL} alt='avatar profile'/><br></br><br></br>
+                        {name}
+                    </div>
+
+                    <div className="answer-options">
+                        <h3>Would you rather...</h3>
+                        <div className="option">{optionOne.text}</div>
+                        <h3>or</h3>
+                        <div className="option">{optionTwo.text}</div>
+                    </div>
+
+                    <div className="space">
+                    </div>
+                </Link>
         )
     }
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
     const question = questions[id];
-    console.log(id)
+    
     return {
         question,
         author: users[question.author],

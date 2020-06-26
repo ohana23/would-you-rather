@@ -1,10 +1,8 @@
-// TODO: add avatar url's using fillmurray.com or the nic cage one
-
 let users = {
   sarahedo: {
-    id: 'sarahedo',
-    name: 'Sarah Edo',
-    avatarURL: 'http://www.fillmurray.com/80/80',
+    id: 'ursulak',
+    name: 'Ursula K. Le Guin',
+    avatarURL: 'https://api.personality-database.com/profile_images/26335.png',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,9 +12,9 @@ let users = {
     questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
   },
   tylermcginnis: {
-    id: 'tylermcginnis',
-    name: 'Tyler McGinnis',
-    avatarURL: 'http://www.fillmurray.com/80/80',
+    id: 'johnsteinbeck',
+    name: 'John Steinbeck',
+    avatarURL: 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE5NDg0MDU1MTM4MzA1NTUx/john-steinbeck-9493358-1-402.jpg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,9 +22,9 @@ let users = {
     questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
   },
   johndoe: {
-    id: 'johndoe',
-    name: 'John Doe',
-    avatarURL: 'http://www.fillmurray.com/80/80',
+    id: 'jamesbaldwin',
+    name: 'James Baldwin',
+    avatarURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/James_Baldwin_37_Allan_Warren_%28cropped%29.jpg/1280px-James_Baldwin_37_Allan_Warren_%28cropped%29.jpg',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

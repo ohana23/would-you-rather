@@ -1,44 +1,117 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { handleAnswerToQuestion } from '../actions/questions';
 
 class QuestionPage extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleOptionOneSelect = this.handleOptionOneSelect.bind(this);
+        this.handleOptionTwoSelect = this.handleOptionTwoSelect.bind(this);
+    }
 
     handleOptionOneSelect() {
-        console.log("option one");
+        this.props.handleAnswerSelect('optionOne');
     }
 
     handleOptionTwoSelect() {
-        console.log("option two");
+        this.props.handleAnswerSelect('optionTwo');
     }
 
     render() {
-         const { question } = this.props;
+        const { 
+            question, 
+            answer, 
+            author, 
+            optionOneScore,
+            optionTwoScore,
+            optionOnePercentage, 
+            optionTwoPercentage, 
+            votesSum,
+            pathNotFound
+        } = this.props;
+
+        if (pathNotFound) {
+            return (<Redirect to="/404" />)
+        }
 
         return (
-            <div>
-                <h3>Would you rather...</h3><br></br>
+            <div className="question-page">
+                <div className="question-info">
+                    <img src={author.avatarURL} alt='avatar profile'/><br></br><br></br>
+                    {author.name}
+                </div>
 
-                <button onClick={this.handleOptionOneSelect}>
-                    {question.optionOne.text}
-                </button><br></br>
+                {answer
+                    ?
+                    <div className="question-results">
+                        <h3>Would you rather...</h3>
+                        <div className={answer === 'optionOne' ? 'option-results highlighted' : 'option-results'}>
+                            {question.optionOne.text}
+                            <h3 className="percentage">{optionOnePercentage}%</h3>
+                            <p className="ratio">{optionOneScore} out of {votesSum}</p>
+                        </div>
 
-                <p>or</p>
+                        <div className={answer === 'optionTwo' ? 'option-results highlighted' : 'option-results'}>
+                            {question.optionTwo.text}
+                            <h3 className="percentage">{optionTwoPercentage}%</h3>
+                            <p className="ratio">{optionTwoScore} out of {votesSum}</p>
+                        </div>
+                    </div>
+                    :
+                    <div className="question-options">
+                        <h3>Would you rather...</h3>
+                        <button onClick={this.handleOptionOneSelect}>
+                            {question.optionOne.text}
+                        </button>
+                        <h3>or</h3>
+                        <button onClick={this.handleOptionTwoSelect}>
+                            {question.optionTwo.text}
+                        </button>
+                    </div>
+                }
 
-                <button onClick={this.handleOptionTwoSelect}>
-                    {question.optionTwo.text}
-                </button><br></br>
             </div>
         );
     }
 }
 
-function mapStateToProps({ questions }, { match }) {
+function mapStateToProps({ authedUser, users, questions }, { match }) {
     const { id } = match.params;
+    const answers = users[authedUser].answers;
     const question = questions[id];
+    let pathNotFound = false;
+
+    if (question) {
+        var optionOneScore = question.optionOne.votes.length;
+        var optionTwoScore = question.optionTwo.votes.length;
+        var votesSum = optionTwoScore + optionOneScore;
+    } else {
+        pathNotFound = true;
+    }
 
     return {
         question,
+        answer: answers.hasOwnProperty(id) ? answers[id] : null,
+        author: question ? users[question.author] : null,
+        optionOneScore,
+        optionTwoScore,
+        optionOnePercentage: (100 * (optionOneScore/votesSum)).toFixed(0),
+        optionTwoPercentage: (100 * (optionTwoScore/votesSum)).toFixed(0),
+        votesSum,
+        pathNotFound
     }
 }
 
-export default connect(mapStateToProps)(QuestionPage);
+function mapDispatchToProps(dispatch, { match }) {
+    const { id } = match.params;
+
+    return {
+        handleAnswerSelect: (answer) => {
+            dispatch(handleAnswerToQuestion(id, answer));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionPage);
